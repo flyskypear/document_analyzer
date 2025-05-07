@@ -33,7 +33,7 @@ if __name__ == '__main__':
         temperature=temperature
     )
 
-    if persist_directory.exists():
+    if analyzer.vectorstore_exists():
         if reset:
             print(f"{persist_directory} already exists. It will be deleted. " \
                   "Please confirm by entering y, anything else will exit the program.")
