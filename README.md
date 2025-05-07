@@ -13,5 +13,5 @@ To run the analyzer interactively:
 To run the jupyter lab with the analyzer notebook and code:
 
 ```bash
-[user@localhost document_analyzer]$ docker compose run --rm --service-port notebook
+[user@localhost document_analyzer]$ docker compose run --rm --service-ports notebook
 ```
