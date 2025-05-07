@@ -5,6 +5,7 @@ services:
       target: analyzer
     stdin_open: true
     tty: true
+    # change this to the path of your data folder and add arguments to the command if needed
     command: ["python3", "app.py", "--data", "/home/jovyan/data/KL Policies and Plans", "/home/jovyan/data/National Policies", "-s"]
     volumes:
       - ./:/home/jovyan/analyzer
