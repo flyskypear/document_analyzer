@@ -1,5 +1,6 @@
 from analyzer.argparser import parser
-from analyzer.analyzer import DocumentAnalyzer  
+from analyzer.analyzer import DocumentAnalyzer 
+import shutil
 
 if __name__ == '__main__':
 
@@ -32,12 +33,20 @@ if __name__ == '__main__':
         temperature=temperature
     )
 
-    if not reset:
-        if analyzer.vectorstore_exists():
-            print("Vectorstore already exists. Loading existing vectorstore. " \
-            "To re-create it, delete the existing vectorstore directory or pass the -r or --reset option.")
+    if persist_directory.exists():
+        if reset:
+            print(f"{persist_directory} already exists. It will be deleted. " \
+                  "Please confirm by entering y, anything else will exit the program.")
+            confirm = input("Confirm deletion (y/n): ")
+            if confirm.lower() != 'y':
+                print("Exiting program.")
+                exit(0)
+            shutil.rmtree(persist_directory)
         else:
-            reset = True
+            print(f"{persist_directory} already exists. Loading existing vectorstore. " \
+                  "To re-create it, delete the existing vectorstore directory or pass the -r or --reset option.")
+    else:
+        reset = True
 
     vectorstore = analyzer.create_vectorstore()
 
