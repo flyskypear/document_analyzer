@@ -99,6 +99,16 @@ parser.add_argument(
     help="Include sources in the output. This will include the source of the data in the output.",
 )
 
+parser.add_argument(
+    "-a",
+    "--add-data",
+    type=str,
+    nargs='+',
+    default=None,
+    help="Add files in a data directory to the existing vectorstore. " \
+    "This will add the files to the existing vectorstore database.",
+)
+
 
 
 

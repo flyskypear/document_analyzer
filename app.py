@@ -20,6 +20,7 @@ if __name__ == '__main__':
     temperature = args.temperature
     reset = args.reset
     source = args.include_sources
+    additional_data = args.add_data
 
     analyzer = DocumentAnalyzer(
         model=model,
@@ -50,13 +51,19 @@ if __name__ == '__main__':
 
     vectorstore = analyzer.create_vectorstore()
 
-    if reset:
+    def _add_documents(dirs, vectorstore):
         files = []
-        for dir in data:
+        for dir in dirs:
             files.extend(analyzer.get_file_paths(dir))
         documents = analyzer.parse_files(files)
         analyzer.add_documents(documents, vectorstore)
     
+    if reset:
+        _add_documents(data, vectorstore)
+    
+    if additional_data:
+        _add_documents(additional_data, vectorstore)
+
     qa_chain = analyzer.get_qa_chain(vectorstore)
     print("QA chain created. You can now ask questions about the documents. You can exit by typing 'exit'.")
     question = input("Enter your question: ")
