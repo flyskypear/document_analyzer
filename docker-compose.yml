@@ -6,11 +6,12 @@ services:
     stdin_open: true
     tty: true
     # change this to the path of your data folder and add arguments to the command if needed
-    command: ["python3", "app.py", "--data", "/home/jovyan/data/KL Policies and Plans", "/home/jovyan/data/National Policies", "-s"]
+    # command: ["python3", "app.py", "--data", "/home/jovyan/data/KL Policies and Plans", "/home/jovyan/data/National Policies", "-s"]
+    command: ["python3", "app.py", "--data", "../data", "-s"]
     volumes:
       - ./:/home/jovyan/analyzer
       # change this to the path of your data folder
-      - ../Malaysia 1:/home/jovyan/data
+      - ../National Policies:/home/jovyan/data
     working_dir: /home/jovyan/analyzer
     environment:
       - AI_API_KEY=sk-KbR-Csnj0L7vUssXqZJQew
